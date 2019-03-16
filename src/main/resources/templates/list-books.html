@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <form action="search" method="get">
+            Search book: <input type="text" name="searchedTitle" />
+            <input type="submit" value="Search by title" class="add-button" />
+        </form>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 150px;">Title</th>
+                <th style="width: 150px;">Author</th>
+                <th style="width: 150px;">Category</th>
+            </tr>
+            </thead>
+            <tr th:each="books : ${book}">
+                <td th:text="${books.title}">Sample title</td>
+                <td th:text="${books.author}">Sample author</td>
+                <td th:text="${books.bookCategory}">Sample category</td>
+                <td th:hidden="${books.user.id}">1</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

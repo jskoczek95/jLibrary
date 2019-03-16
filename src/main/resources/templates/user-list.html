@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <input type="button" value="Add user" onclick="window.location.href='showAddForm'; return false;"
+           class="add-button" style="margin-top: 10px;" />
+    <input type="button" value="Show whole list" onclick="window.location.href='list'; return false;"
+           class="add-button" style="margin-top: 10px;" />
+    <form action="search" method="get" style="margin-top: 10px;">
+        Search user: <input type="text" name="searchedUser" />
+        <input type="submit" value="Search by first name" class="add-button" />
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="width: 150px;">Id</th>
+                <th style="width: 150px;">First Name</th>
+                <th style="width: 150px;">Last Name</th>
+                <th style="width: 150px;">Action</th>
+            </tr>
+        </thead>
+        <tr th:each="users : ${user}">
+            <td th:text="${users.id}">Sample id</td>
+            <td th:text="${users.firstName}">Sample first name</td>
+            <td th:text="${users.lastName}">Sample last name</td>
+            <td><a th:href="@{'/user/' + ${users.id} + '/new-book'}" type="button" class="btn btn-primary">Add Book</a>
+                <a th:href="@{'/user/' + ${users.id} + '/show-books'}" type="button" class="btn btn-info">Show books</a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>
