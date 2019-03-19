@@ -22,9 +22,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "userId")
-    private String userId;
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -35,13 +32,13 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String encryptedPassword;
-
-    @Column(nullable = false)
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Book> books;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<UserRole> roles = new HashSet<>();
 
 
 }

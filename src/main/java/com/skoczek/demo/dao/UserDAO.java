@@ -1,11 +1,10 @@
-package com.skoczek.demo.service;
+package com.skoczek.demo.dao;
 
 import com.skoczek.demo.model.User;
 
-
 import java.util.List;
 
-public interface UserService{
+public interface UserDAO {
 
     List<User> getUsers();
 
@@ -17,6 +16,5 @@ public interface UserService{
 
     User findByUserName(String userName);
 
-    void addWithDefaultRole(User user);
 
 }

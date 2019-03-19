@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Registration Success</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="alert alert-success" role="alert">
+    Success! Now you can <a th:href="@{/user/list}" class="alert-link">sign in</a>
+</div>
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>If you want to test <b>Admin</b> options, please log-in with following credentials:
+        <p><b>Username: </b>admin@admin.pl</p>
+    <p><b>Password: </b>secretadminpass</p>
+    </p>
+</div>
+
+</body>
+</html>

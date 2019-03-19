@@ -2,12 +2,15 @@ package com.skoczek.demo.service;
 
 import com.skoczek.demo.dao.UserDAO;
 import com.skoczek.demo.model.User;
+import com.skoczek.demo.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -25,11 +28,15 @@ public class UserServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        userService = new UserServiceImpl();
+
     }
 
     @Test
     public void getUsers() {
+
+        userDAO.getUsers();
+
+        verify(userDAO,times(1)).getUsers();
     }
 
     @Test
@@ -42,6 +49,7 @@ public class UserServiceImplTest {
 
     @Test
     public void searchUserByFirstName() {
+
     }
 
     @Test
@@ -51,8 +59,18 @@ public class UserServiceImplTest {
 
         User userReturned = userDAO.findById(1L);
 
+        when(userDAO.findById(anyLong())).thenReturn(userReturned);
         verify(userDAO, times(1)).findById(anyLong());
         verify(userDAO, never()).getUsers();
 
+    }
+
+
+    @Test
+    public void findByUserName() {
+    }
+
+    @Test
+    public void addWithDefaultRole() {
     }
 }
