@@ -3,6 +3,7 @@ package com.skoczek.demo.service;
 import com.skoczek.demo.model.User;
 import com.skoczek.demo.model.UserRole;
 import com.skoczek.demo.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

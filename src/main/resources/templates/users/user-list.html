@@ -39,5 +39,8 @@
 </div>
 Logged user: <span sec:authentication="principal.username">Bob</span>
 Roles: <span sec:authentication="principal.authorities">lald</span>
+<p sec:authorize="hasRole('ADMIN')">To zobaczy tylko admin</p>
+<p sec:authorize="hasRole('USER')">To zobaczy tylko user</p>
+<a th:href="@{/logout}">Logout</a>
 </body>
 </html>

@@ -1,14 +1,11 @@
 package com.skoczek.demo.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.context.annotation.Scope;
-
 
 import javax.persistence.*;
+
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 

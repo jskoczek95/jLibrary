@@ -2,16 +2,15 @@ package com.skoczek.demo.service;
 
 import com.skoczek.demo.dao.UserDAO;
 import com.skoczek.demo.model.User;
-
 import com.skoczek.demo.model.UserRole;
 import com.skoczek.demo.repository.UserRepository;
 import com.skoczek.demo.repository.UserRoleRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

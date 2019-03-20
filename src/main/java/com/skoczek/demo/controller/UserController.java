@@ -3,6 +3,7 @@ package com.skoczek.demo.controller;
 import com.skoczek.demo.model.User;
 import com.skoczek.demo.service.BookService;
 import com.skoczek.demo.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.List;
 
 @Controller
@@ -29,7 +31,7 @@ public class UserController {
 
         model.addAttribute("user", userService.getUsers());
 
-        return "user-list";
+        return "users/user-list";
     }
 
     @PostMapping("/saveUser")
@@ -45,7 +47,7 @@ public class UserController {
         User user = new User();
         model.addAttribute("user", user);
 
-        return "user-form";
+        return "users/user-form";
     }
 
     @GetMapping("/search")
@@ -53,24 +55,23 @@ public class UserController {
 
         List<User> users = userService.searchUserByFirstName(theName);
         model.addAttribute("user", users);
-        return "user-list";
+        return "users/user-list";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
-        return "register-form";
+        return "register/register-form";
     }
 
     @PostMapping("/register")
     public String addUser(@ModelAttribute @Valid User user,
                           BindingResult bindResult) {
         if(bindResult.hasErrors())
-            return "register-form";
+            return "register/register-form";
         else {
             userService.addWithDefaultRole(user);
-            return "register-success";
+            return "register/register-success";
         }
     }
-
 }
