@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUserAndBook(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user){
 
         userService.saveUser(user);
         return "redirect:/user/list";
@@ -73,5 +73,22 @@ public class UserController {
             userService.addWithDefaultRole(user);
             return "register/register-success";
         }
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteUser(@PathVariable Long id){
+
+        userService.deleteUser(id);
+
+        return "redirect:/user/register";
+    }
+
+    @GetMapping("/{id}/update")
+    public String updateUser(@PathVariable Long id, Model model){
+
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+
+        return "users/update-form";
     }
 }

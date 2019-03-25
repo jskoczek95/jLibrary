@@ -18,4 +18,6 @@ public interface UserService{
 
     void addWithDefaultRole(User user);
 
+    void deleteUser(Long id);
+
 }

@@ -57,4 +57,9 @@ public class UserDAOImpl implements UserDAO {
         return (User) query.getSingleResult();
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        User user = findById(id);
+        entityManager.remove(user);
+    }
 }

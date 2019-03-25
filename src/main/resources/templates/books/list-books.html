@@ -11,14 +11,17 @@
     <div id="container">
         <form action="search" method="get">
             Search book: <input type="text" name="searchedTitle" />
-            <input type="submit" value="Search by title" class="add-button" />
+            <input type="submit" value="Search by title" class="add-button" style="margin-top: 10px;" />
         </form>
+        <input type="button" value="Go back to user's list" onclick="window.location.href='/user/list'; return false;"
+               class="add-button" style="margin-top: 10px;" />
         <table class="table table-striped">
             <thead>
             <tr>
                 <th style="width: 150px;">Title</th>
                 <th style="width: 150px;">Author</th>
                 <th style="width: 150px;">Category</th>
+                <th style="width: 150px;">Action</th>
             </tr>
             </thead>
             <tr th:each="books : ${book}">
@@ -26,6 +29,9 @@
                 <td th:text="${books.author}">Sample author</td>
                 <td th:text="${books.bookCategory}">Sample category</td>
                 <td th:hidden="${books.user.id}">1</td>
+                <td><a th:if="${books.user.email} == ${#authentication.name}" th:href="@{'/user/' + ${books.id} + '/delete-book'}" type="button" class="btn btn-danger">Delete book</a>
+                    <a th:if="${books.user.email} == ${#authentication.name}" th:href="@{'/user/' + ${books.id} + '/update-book'}" type="button" class="btn btn-warning">Update</a>
+                </td>
             </tr>
         </table>
     </div>

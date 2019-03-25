@@ -5,6 +5,7 @@ import com.skoczek.demo.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -54,5 +55,14 @@ public class BookDAOImpl implements BookDAO {
         }
         List<Book> books = query.getResultList();
         return books;
+    }
+
+    @Override
+    public Book findById(Long id) {
+        Book book = entityManager.find(Book.class, new Long(id));
+        if(book == null) {
+            throw new EntityNotFoundException("Cant find book's id" + id);
+        }
+        return book;
     }
 }

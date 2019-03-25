@@ -37,6 +37,7 @@ public class BookController {
 
         bookService.saveBook(book);
         return "redirect:/user/list";
+
     }
 
     @GetMapping("/{id}/new-book")
@@ -55,6 +56,23 @@ public class BookController {
         List<Book> books = bookService.searchBookByTitle(theTitle);
         model.addAttribute("book", books);
         return "books/list-books";
+    }
+
+    @GetMapping("/{id}/delete-book")
+    public String deleteBook(@PathVariable Long id){
+
+        bookService.deleteBook(id);
+
+        return "redirect:/user/list";
+    }
+
+    @GetMapping("/{id}/update-book")
+    public String updateBook(@PathVariable Long id, Model model){
+
+        Book book = bookService.findById(id);
+        model.addAttribute("book", book);
+
+        return "books/update-book-form";
     }
 
 

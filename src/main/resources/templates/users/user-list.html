@@ -26,21 +26,30 @@
                 <th style="width: 150px;">Action</th>
             </tr>
         </thead>
-        <tr th:each="users : ${user}">
+        <tr sec:authorize="hasRole('ADMIN')" th:each="users : ${user}">
             <td th:text="${users.id}">Sample id</td>
             <td th:text="${users.firstName}">Sample first name</td>
             <td th:text="${users.lastName}">Sample last name</td>
             <td><a th:href="@{'/user/' + ${users.id} + '/new-book'}" type="button" class="btn btn-primary">Add Book</a>
                 <a th:href="@{'/user/' + ${users.id} + '/show-books'}" type="button" class="btn btn-info">Show books</a>
+                <a th:if="${users.email} != ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/delete'}" type="button" class="btn btn-danger">Delete user</a>
+                <a th:href="@{'/user/' + ${users.id} + '/update'}" type="button" class="btn btn-warning">Update</a>
             </td>
-
+        </tr>
+        <tr sec:authorize="hasRole('USER')" th:each="users : ${user}">
+            <td th:text="${users.id}">Sample id</td>
+            <td th:text="${users.firstName}">Sample first name</td>
+            <td th:text="${users.lastName}">Sample last name</td>
+            <td><a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/new-book'}" type="button" class="btn btn-primary">Add Book</a>
+                <a th:href="@{'/user/' + ${users.id} + '/show-books'}" type="button" class="btn btn-info">Show books</a>
+                <a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/delete'}" type="button" class="btn btn-danger">Delete user</a>
+                <a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/update'}" type="button" class="btn btn-warning">Update</a>
+            </td>
         </tr>
     </table>
 </div>
-Logged user: <span sec:authentication="principal.username">Bob</span>
-Roles: <span sec:authentication="principal.authorities">lald</span>
-<p sec:authorize="hasRole('ADMIN')">To zobaczy tylko admin</p>
-<p sec:authorize="hasRole('USER')">To zobaczy tylko user</p>
-<a th:href="@{/logout}">Logout</a>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
