@@ -5,7 +5,7 @@ The landing page after signing in is user's list. It shows you every created use
 use the credentials given on the page after registration process). Common user can:
 <li><b>add</b> a new book</li>
 <li><b>update</b> his first and last name & his book details</li>
-<li><b>delete</b> his account & any of his book</li>
+<li><b>delete</b> his account & any of his book</li> </br>
 and look into other user's book collection. Admin can delete other users, update them and also has the common user's privileges. However, he can't delete his own account. When common user deletes his account, he is redirected to registration page.
 Layout is gonna be the last thing to fix. I prefer to focus on the backend logic.
 
