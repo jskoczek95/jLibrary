@@ -1,6 +1,6 @@
 # kind-of-library
 This is a simple CRM app.
-First step is to register using link - /user/register. When you do so you can sign in to the app.
+First step is to register using link - <i>/user/register</i> or just by clicking "<i>register new user</i>" on login page. When you do so you can sign in to the app.
 The landing page after signing in is user's list. It shows you every created user (user with id=1 is pre-defined admin user,
 use the credentials given on the page after registration process). Common user can:
 <li><b>add</b> a new book</li>
