@@ -17,8 +17,19 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserDAO userDAO;
+    private UserRepository userRepository;
+    private UserRoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
+    private static final String DEFAULT_ROLE = "ROLE_USER";
+
+    @Autowired
+    public UserServiceImpl(UserDAO userDAO, UserRepository userRepository, UserRoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        this.userDAO = userDAO;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public List<User> getUsers() {
@@ -48,24 +59,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private static final String DEFAULT_ROLE = "ROLE_USER";
-    private UserRepository userRepository;
-    private UserRoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setRoleRepository(UserRoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
 
     public void addWithDefaultRole(User user) {
         UserRole defaultRole = roleRepository.findByRole(DEFAULT_ROLE);

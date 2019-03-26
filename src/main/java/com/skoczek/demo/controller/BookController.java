@@ -18,11 +18,15 @@ import java.util.List;
 @RequestMapping("/user")
 public class BookController {
 
-    @Autowired
+
     private BookService bookService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public BookController(BookService bookService, UserService userService) {
+        this.bookService = bookService;
+        this.userService = userService;
+    }
 
     @GetMapping("/{id}/show-books")
     public String listBooks(Model model, @PathVariable("id") Long id){

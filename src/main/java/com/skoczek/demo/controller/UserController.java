@@ -1,7 +1,6 @@
 package com.skoczek.demo.controller;
 
 import com.skoczek.demo.model.User;
-import com.skoczek.demo.service.BookService;
 import com.skoczek.demo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,13 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
+
     private UserService userService;
 
-
     @Autowired
-    private BookService bookService;
-
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/list")
     public String userList(Model model){
