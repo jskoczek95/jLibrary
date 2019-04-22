@@ -5,6 +5,7 @@ import com.skoczek.demo.model.User;
 import com.skoczek.demo.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -19,14 +20,25 @@ import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
 
+    @InjectMocks
     UserServiceImpl userService;
 
     @Mock
-    UserDAO userDAO;
+    private UserDAO userDAO;
+
+    private User user;
 
     @Before
     public void setUp() throws Exception {
+
+        user = new User();
+
         MockitoAnnotations.initMocks(this);
+
+        user.setFirstName("Jakub");
+        user.setLastName("Skoczek");
+        user.setEmail("test@test.com");
+        user.setId(1L);
 
 
     }
@@ -34,33 +46,46 @@ public class UserServiceImplTest {
     @Test
     public void getUsers() {
 
-        userDAO.getUsers();
+        List<User> list = new ArrayList<>();
+        list.add(user);
 
-        verify(userDAO,times(1)).getUsers();
+        when(userDAO.getUsers()).thenReturn(list);
+
+        assertEquals(list.get(0), userDAO.getUsers().get(0));
+        assertEquals(list.size(), userDAO.getUsers().size());
+
+
     }
 
     @Test
     public void saveUser() {
+
+        userDAO.saveUser(user);
+        verify(userDAO, times(1)).saveUser(user);
     }
 
-    @Test
-    public void saveUserAndBook() {
-    }
 
     @Test
     public void searchUserByFirstName() {
+
+        List<User> list = new ArrayList<>();
+        list.add(user);
+        when(userDAO.searchUserByFirstName(anyString())).thenReturn(list);
+
+        assertNotNull(list);
+        assertEquals(list.size(), 1);
+        assertEquals(userDAO.searchUserByFirstName("Jakub").size(), 1);
+        assertEquals(userDAO.searchUserByFirstName(null).size(), 0);
 
     }
 
     @Test
     public void findById() {
-        User user = new User();
-        user.setId(1L);
 
-        User userReturned = userDAO.findById(1L);
+        when(userDAO.findById(anyLong())).thenReturn(user);
 
-        when(userDAO.findById(anyLong())).thenReturn(userReturned);
-        verify(userDAO, times(1)).findById(anyLong());
+        assertNotNull(user);
+        assertEquals(user.getFirstName(), "Jakub");
         verify(userDAO, never()).getUsers();
 
     }
