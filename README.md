@@ -1,13 +1,18 @@
 # kind-of-library
-This is a simple CRM app.
-First step is to register using link - <i>/user/register</i> or just by clicking "<i>register new user</i>" on login page. When you do so you can sign in to the app.
-The landing page after signing in is user's list. It shows you every created user (user with id=1 is pre-defined admin user,
-use the credentials given on the page after registration process). Common user can:
-<li><b>add</b> a new book</li>
-<li><b>update</b> his first and last name & his book details</li>
-<li><b>delete</b> his account & any of his book</li> </br>
-and look into other user's book collection. Admin can delete other users, update them and also has the common user's privileges. However, he can't delete his own account. When common user deletes his account, he is redirected to registration page.
-Layout is gonna be the last thing to fix. I prefer to focus on the backend logic.
+This is simple CRUD app.
 
-The app is updated in free time, following updates are listed in the <b>"Issues"</b>.
-This app was created just for educational purpose. It has no "business background". 
+Landing page is login page. You can either register a new user or login with admin credentials:
+<li><i>email</i> : admin@admin.pl</li>
+<li><i>password</i> : secretadminpass</li>
+
+If you choose to register a new user, you will be asked to fill all the fields. If there's already user with your email, you will be informed. The email has to be unique for every user.
+Once logged in you'll see every registered user. As a common user you can:
+<li><b>Add</b> a new book to your collection</li>
+<li><b>Show</b> the books you own</li>
+<li><b>Update</b> your first and last name & update information about your book</li>
+<li><b>Delete</b> your account or the particular book you choose</li> </br>
+When logged in as common user, if you delete your account you'll automaticaly get redirected to login page.
+If you choose to log in as an <b>admin</b> (besides basic operations) you'll be able to delete other users or update their basic data. However, because you're admin you cannot delete your own account ;)
+
+Enjoy!
+
