@@ -2,7 +2,6 @@ package com.skoczek.demo.service;
 
 import com.skoczek.demo.dao.BookDAO;
 import com.skoczek.demo.model.Book;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

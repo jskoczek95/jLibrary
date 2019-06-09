@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 
 @Getter
@@ -17,9 +18,11 @@ public class Book {
     private Long id;
 
     @Column(name = "title")
+    @NotEmpty
     private String title;
 
     @Column(name = "author")
+    @NotEmpty
     private String author;
 
     @Enumerated(value = EnumType.STRING)

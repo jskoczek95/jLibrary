@@ -1,14 +1,12 @@
 package com.skoczek.demo.dao;
 
 import com.skoczek.demo.model.Book;
-import com.skoczek.demo.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import java.util.List;
 
 @Repository
@@ -47,7 +45,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public List<Book> searchBookByTitle(String searchedTitle) {
         Query query = null;
-        if(searchedTitle != null && searchedTitle.trim().length() > 0){
+        if (searchedTitle != null && searchedTitle.trim().length() > 0) {
             query = entityManager.createQuery("FROM Book WHERE lower(title) like :theTitle", Book.class);
             query.setParameter("theTitle", searchedTitle.toLowerCase());
         } else {
@@ -60,7 +58,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public Book findById(Long id) {
         Book book = entityManager.find(Book.class, new Long(id));
-        if(book == null) {
+        if (book == null) {
             throw new EntityNotFoundException("Cant find book's id" + id);
         }
         return book;

@@ -1,55 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>User List</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <!--<input type="button" sec:authorize="hasRole('ADMIN')" value="Add user" onclick="window.location.href='showAddForm'; return false;"-->
-           <!--class="add-button" style="margin-top: 10px;" />-->
-    <input type="button" value="Show whole list" onclick="window.location.href='list'; return false;"
-           class="add-button" style="margin-top: 10px;" />
-    <form action="search" method="get" style="margin-top: 10px;">
-        Search user: <input type="text" name="searchedUser" />
-        <input type="submit" value="Search by first name" class="add-button" />
+<div style="margin-left: 10px">
+    <input class="btn btn-default" onclick="window.location.href='list'; return false;" style="margin-top: 10px; background-color: #f6f6f6;"
+           type="button" value="Show the list"/>
+</div>
+<div style="margin-left: 10px">
+    <form action="search" method="get" style="margin-top: 20px;">
+        Search user: <input name="searchedUser" type="text"/>
+        <input class="add-button" type="submit" value="Search by first name"/>
     </form>
-    <table class="table table-striped">
+</div>
+<div style="margin-left: -3.5px">
+    <a class="btn btn-link" href="/user/books/collection">Show book collection</a>
+</div>
+<div style="margin-top: 20px">
+    <!--<input type="button" sec:authorize="hasRole('ADMIN')" value="Add user" onclick="window.location.href='form'; return false;"-->
+    <!--class="add-button" style="margin-top: 10px;" />-->
+    <table class="table table-striped" style="margin-left: 10px">
         <thead>
-            <tr>
-                <th style="width: 150px;">Id</th>
-                <th style="width: 150px;">First Name</th>
-                <th style="width: 150px;">Last Name</th>
-                <th style="width: 150px;">Action</th>
-            </tr>
+        <tr>
+            <th style="width: 150px;">Id</th>
+            <th style="width: 150px;">First Name</th>
+            <th style="width: 150px;">Last Name</th>
+            <th style="width: 150px;">Action</th>
+        </tr>
         </thead>
         <tr sec:authorize="hasRole('ADMIN')" th:each="users : ${user}">
             <td th:text="${users.id}">Sample id</td>
             <td th:text="${users.firstName}">Sample first name</td>
             <td th:text="${users.lastName}">Sample last name</td>
-            <td><a th:href="@{'/user/' + ${users.id} + '/new-book'}" type="button" class="btn btn-primary">Add Book</a>
-                <a th:href="@{'/user/' + ${users.id} + '/show-books'}" type="button" class="btn btn-info">Show books</a>
-                <a th:if="${users.email} != ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/delete'}" type="button" class="btn btn-danger">Delete user</a>
-                <a th:href="@{'/user/' + ${users.id} + '/update'}" type="button" class="btn btn-warning">Update</a>
+            <td><a class="btn btn-primary" th:href="@{'/user/books/' + ${users.id} + '/add'}"
+                   th:if="${users.email} == ${#authentication.name}" type="button">Add Book</a>
+                <a class="btn btn-info" th:href="@{'/user/books/' + ${users.id} + '/books'}" type="button">Show
+                    books</a>
+                <a class="btn btn-danger"
+                   th:href="@{'/user/admin/' + ${users.id} + '/delete'}" th:if="${users.email} != ${#authentication.name}" type="button">Delete
+                    user</a>
+                <a class="btn btn-warning" th:href="@{'/user/' + ${users.id} + '/update'}" type="button">Update</a>
             </td>
         </tr>
         <tr sec:authorize="hasRole('USER')" th:each="users : ${user}">
             <td th:text="${users.id}">Sample id</td>
             <td th:text="${users.firstName}">Sample first name</td>
             <td th:text="${users.lastName}">Sample last name</td>
-            <td><a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/new-book'}" type="button" class="btn btn-primary">Add Book</a>
-                <a th:href="@{'/user/' + ${users.id} + '/show-books'}" type="button" class="btn btn-info">Show books</a>
-                <a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/delete'}" type="button" class="btn btn-danger">Delete user</a>
-                <a th:if="${users.email} == ${#authentication.name}" th:href="@{'/user/' + ${users.id} + '/update'}" type="button" class="btn btn-warning">Update</a>
+            <td><a class="btn btn-primary" th:href="@{'/user/books/' + ${users.id} + '/add'}"
+                   th:if="${users.email} == ${#authentication.name}" type="button">Add Book</a>
+                <a class="btn btn-info" th:href="@{'/user/books/' + ${users.id} + '/books'}" type="button">Show
+                    books</a>
+                <a class="btn btn-danger" th:href="@{'/user/' + ${users.id} + '/delete'}"
+                   th:if="${users.email} == ${#authentication.name}" type="button">Delete user</a>
+                <a class="btn btn-warning" th:href="@{'/user/' + ${users.id} + '/update'}"
+                   th:if="${users.email} == ${#authentication.name}" type="button">Update</a>
             </td>
         </tr>
     </table>
 </div>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<div style="margin-left: 10px">
+    <form method="post" th:action="@{/logout}">
+        <input alt="Submit" src="http://www.physics.purdue.edu/primelab/hlmpioneer/logout_button.png" style="width: 100px"
+               type="image"/>
+    </form>
+</div>
 </body>
 </html>

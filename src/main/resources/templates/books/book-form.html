@@ -5,21 +5,22 @@
     <title>Book Form</title>
 </head>
 <body>
-    <form th:object="${book}"  th:action="@{/user/new-book}" method="post">
-        <table>
-            <tr>
-                <input type="hidden" th:field="*{user.id}"/>
-                <input type="text" th:field="*{title}" placeholder="Title" />
-                <input type="text" th:field="*{author}" placeholder="Author" />
-                <select class="form-control" th:field="*{bookCategory}">
-                    <option th:each="category : ${T(com.skoczek.demo.model.BookCategory).values()}"
-                            th:value="${category.name()}"
-                            th:text="${category.name()}"
-                            >val</option>
-                </select>
-            </tr>
-            <button type="submit">Save</button>
-        </table>
-    </form>
+<form method="post" th:action="@{/user/books/add}" th:object="${book}">
+    <table>
+        <tr>
+            <input th:field="*{user.id}" type="hidden"/>
+            <input placeholder="Title" th:field="*{title}" type="text"/>
+            <input placeholder="Author" th:field="*{author}" type="text"/>
+            <select class="form-control" th:field="*{bookCategory}">
+                <option th:each="category : ${T(com.skoczek.demo.model.BookCategory).values()}"
+                        th:text="${category.name()}"
+                        th:value="${category.name()}"
+                >val
+                </option>
+            </select>
+        </tr>
+        <button type="submit">Save</button>
+    </table>
+</form>
 </body>
 </html>

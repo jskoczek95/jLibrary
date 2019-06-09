@@ -4,7 +4,7 @@ import com.skoczek.demo.model.User;
 
 import java.util.List;
 
-public interface UserService{
+public interface UserService {
 
     List<User> getUsers();
 
@@ -14,10 +14,10 @@ public interface UserService{
 
     User findById(Long id);
 
-    User findByUserName(String userName);
-
     void addWithDefaultRole(User user);
 
     void deleteUser(Long id);
+
+    boolean isAlreadyRegistered(String email);
 
 }

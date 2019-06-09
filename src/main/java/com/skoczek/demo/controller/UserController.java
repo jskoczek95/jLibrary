@@ -2,7 +2,6 @@ package com.skoczek.demo.controller;
 
 import com.skoczek.demo.model.User;
 import com.skoczek.demo.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
 import java.util.List;
 
 @Controller
@@ -26,22 +24,22 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public String userList(Model model){
+    public String userList(Model model) {
 
         model.addAttribute("user", userService.getUsers());
 
         return "users/user-list";
     }
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute User user){
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute User user) {
 
         userService.saveUser(user);
         return "redirect:/user/list";
     }
 
-    @GetMapping("/showAddForm")
-    public String showAddUserForm(Model model){
+    @GetMapping("/form ")
+    public String showAddUserForm(Model model) {
 
         User user = new User();
         model.addAttribute("user", user);
@@ -50,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("/search")
-    public String searchByTitle(@RequestParam("searchedUser") String theName, Model model){
+    public String searchByName(@RequestParam("searchedUser") String theName, Model model) {
 
         List<User> users = userService.searchUserByFirstName(theName);
         model.addAttribute("user", users);
@@ -60,14 +58,17 @@ public class UserController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
-        return "register/register-form";
+        return "register/new-register";
     }
 
     @PostMapping("/register")
     public String addUser(@ModelAttribute @Valid User user,
                           BindingResult bindResult) {
-        if(bindResult.hasErrors())
-            return "register/register-form";
+        if (userService.isAlreadyRegistered(user.getEmail())) {
+            bindResult.rejectValue("email", "email.exists", "Email already in database");
+            return "register/new-register";
+        } else if (bindResult.hasErrors())
+            return "register/new-register";
         else {
             userService.addWithDefaultRole(user);
             return "register/register-success";
@@ -75,15 +76,23 @@ public class UserController {
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteUser(@PathVariable Long id){
+    public String deleteUser(@PathVariable Long id) {
 
         userService.deleteUser(id);
 
-        return "redirect:/user/register";
+        return "redirect:/login";
+    }
+
+    @GetMapping("/admin/{id}/delete")
+    public String deleteUserAsAdmin(@PathVariable Long id) {
+
+        userService.deleteUser(id);
+
+        return "redirect:/user/list";
     }
 
     @GetMapping("/{id}/update")
-    public String updateUser(@PathVariable Long id, Model model){
+    public String updateUser(@PathVariable Long id, Model model) {
 
         User user = userService.findById(id);
         model.addAttribute("user", user);

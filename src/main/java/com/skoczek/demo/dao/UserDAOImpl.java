@@ -3,7 +3,6 @@ package com.skoczek.demo.dao;
 import com.skoczek.demo.model.User;
 import org.springframework.stereotype.Repository;
 
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> searchUserByFirstName(String firstName) {
         Query query = null;
-        if(firstName != null && firstName.trim().length() > 0){
+        if (firstName != null && firstName.trim().length() > 0) {
             query = entityManager.createQuery("FROM User WHERE lower(first_name) like:theName", User.class);
             query.setParameter("theName", firstName.toLowerCase());
         } else {
@@ -44,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findById(Long id) {
         User user = entityManager.find(User.class, new Long(id));
-        if(user == null) {
+        if (user == null) {
             throw new EntityNotFoundException("Cant find user's id" + id);
         }
         return user;

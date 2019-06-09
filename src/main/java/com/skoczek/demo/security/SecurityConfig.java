@@ -2,7 +2,6 @@ package com.skoczek.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -25,6 +24,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/h2-console/**")
+                .permitAll()
+                .antMatchers("/css/**")
+                .permitAll()
+                .antMatchers("/user/admin/{id}/delete")
+                .access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/user/register")
                 .permitAll()
                 .anyRequest().authenticated()
@@ -35,13 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        JdbcUserDetailsManagerConfigurer<AuthenticationManagerBuilder> builder = auth.jdbcAuthentication();
-//        builder.dataSource(dataSource);
-//    }
-
 
 }

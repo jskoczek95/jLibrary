@@ -2,17 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book List</title>
+    <title>Books of all users</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <form action="search" method="get">
-        Search book: <input name="searchedTitle" type="text"/>
-        <input class="add-button" style="margin-top: 10px;" type="submit" value="Search by title"/>
-    </form>
+<div>
     <input class="add-button" onclick="window.location.href='/user/list'; return false;" style="margin-top: 10px;"
            type="button" value="Go back to user's list"/>
     <table class="table table-striped">
@@ -21,21 +17,14 @@
             <th style="width: 150px;">Title</th>
             <th style="width: 150px;">Author</th>
             <th style="width: 150px;">Category</th>
-            <th style="width: 150px;">Action</th>
+            <th style="width: 150px;">Owner</th>
         </tr>
         </thead>
-        <tr th:each="books : ${book}">
+        <tr th:each="books : ${thebooks}">
             <td th:text="${books.title}">Sample title</td>
             <td th:text="${books.author}">Sample author</td>
             <td th:text="${books.bookCategory}">Sample category</td>
-            <td th:hidden="${books.user.id}">1</td>
-            <td><a class="btn btn-danger"
-                   th:href="@{'/user/books/' + ${books.id} + '/delete'}" th:if="${books.user.email} == ${#authentication.name}" type="button">Delete
-                book</a>
-                <a class="btn btn-warning"
-                   th:href="@{'/user/books/' + ${books.id} + '/update'}" th:if="${books.user.email} == ${#authentication.name}"
-                   type="button">Update</a>
-            </td>
+            <td th:text="${books.user.firstName} +' '+ ${books.user.lastName}">Sample owner</td>
         </tr>
     </table>
 </div>
