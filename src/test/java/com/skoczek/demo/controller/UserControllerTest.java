@@ -103,12 +103,6 @@ public class UserControllerTest {
         verify(userService, times(1)).saveUser(user);
     }
 
-    @Test
-    @WithMockUser
-    public void showAddUserForm() throws Exception {
-
-
-    }
 
     @Test
     @WithMockUser
@@ -164,12 +158,6 @@ public class UserControllerTest {
 
     }
 
-    @Test
-    @WithMockUser
-    public void addUserExists() throws Exception {
-
-
-    }
 
     @Test
     @WithMockUser

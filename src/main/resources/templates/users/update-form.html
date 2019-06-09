@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"></meta>
-    <title>Update form</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
-<h1>Update form</h1>
-<form action="#" method="post" th:action="@{/user/save}" th:object="${user}">
-
-    <input th:field="*{id}" type="hidden"/>
-    <input th:field="*{email}" type="hidden"/>
-    <input th:field="*{password}" type="hidden"/>
-    <input th:field="*{roles}" type="hidden"/>
-
-    <input placeholder="First Name" th:field="*{firstName}"/><br/>
-    <input placeholder="Last Name" th:field="*{lastName}"/><br/>
-
-    <input type="submit" value="Save"/>
-</form>
-</body>
+<div class="container register-form">
+    <form action="#" method="post" th:action="@{/user/save}" th:object="${user}">
+        <div class="note">
+            <p>Update Form</p>
+        </div>
+        <div class="form-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <input th:field="*{id}" type="hidden"/>
+                    <input th:field="*{email}" type="hidden"/>
+                    <input th:field="*{password}" type="hidden"/>
+                    <input th:field="*{roles}" type="hidden"/>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="First Name *" th:field="*{firstName}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Last Name *" th:field="*{lastName}"/>
+                    </div>
+                </div>
+            </div>
+            <button class="btnSubmit" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
 </html>

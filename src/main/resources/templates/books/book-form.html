@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Book Form</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-<body>
-<form method="post" th:action="@{/user/books/add}" th:object="${book}">
-    <table>
-        <tr>
-            <input th:field="*{user.id}" type="hidden"/>
-            <input placeholder="Title" th:field="*{title}" type="text"/>
-            <input placeholder="Author" th:field="*{author}" type="text"/>
-            <select class="form-control" th:field="*{bookCategory}">
-                <option th:each="category : ${T(com.skoczek.demo.model.BookCategory).values()}"
-                        th:text="${category.name()}"
-                        th:value="${category.name()}"
-                >val
-                </option>
-            </select>
-        </tr>
-        <button type="submit">Save</button>
-    </table>
-</form>
-</body>
+<div class="container register-form">
+    <form action="#" method="post" th:action="@{/user/books/add}" th:object="${book}">
+        <div class="note">
+            <p>Add book</p>
+        </div>
+        <div class="form-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <input th:field="*{user.id}" type="hidden"/>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Title *" th:field="*{title}"/>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Author *" th:field="*{author}"/>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" th:field="*{bookCategory}">
+                            <option th:each="category : ${T(com.skoczek.demo.model.BookCategory).values()}"
+                                    th:text="${category.name()}"
+                                    th:value="${category.name()}"
+                            >val
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="btnSubmit" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
 </html>

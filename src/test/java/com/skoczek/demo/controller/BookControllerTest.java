@@ -64,6 +64,8 @@ public class BookControllerTest {
         book.setAuthor("test");
         book.setId(1L);
 
+        bookService.saveBook(book);
+
     }
 
     @Test
@@ -85,10 +87,6 @@ public class BookControllerTest {
     }
 
     @Test
-    public void showAddBookForm() {
-    }
-
-    @Test
     @WithMockUser
     public void searchByTitle() throws Exception {
 
@@ -97,9 +95,10 @@ public class BookControllerTest {
 
         when(bookService.searchBookByTitle(anyString())).thenReturn(list);
 
+
         String theTitle = bookService.searchBookByTitle("GOT").get(0).getTitle();
 
-        mockMvc.perform(get("/user/books/{id}/search", 1L)
+        mockMvc.perform(get("/user/books/{id}/search", 1)
                 .param("searchedTitle", "GOT"))
                 .andExpect(view().name("books/list-books"))
                 .andExpect(status().isOk());
@@ -136,7 +135,6 @@ public class BookControllerTest {
     public void getAllBooks() throws Exception {
 
         mockMvc.perform(get("/user/books/collection"))
-                .andExpect(view().name("books/books-all"))
                 .andExpect(status().isOk());
     }
 }

@@ -38,15 +38,6 @@ public class UserController {
         return "redirect:/user/list";
     }
 
-    @GetMapping("/form ")
-    public String showAddUserForm(Model model) {
-
-        User user = new User();
-        model.addAttribute("user", user);
-
-        return "users/user-form";
-    }
-
     @GetMapping("/search")
     public String searchByName(@RequestParam("searchedUser") String theName, Model model) {
 
