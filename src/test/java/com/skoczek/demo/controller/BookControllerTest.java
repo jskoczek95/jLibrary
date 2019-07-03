@@ -1,9 +1,10 @@
 package com.skoczek.demo.controller;
 
-import com.skoczek.demo.model.Book;
-import com.skoczek.demo.model.User;
-import com.skoczek.demo.service.BookService;
-import com.skoczek.demo.service.UserService;
+import com.skoczek.jLibrary.controller.BookController;
+import com.skoczek.jLibrary.model.Book;
+import com.skoczek.jLibrary.model.User;
+import com.skoczek.jLibrary.service.BookService;
+import com.skoczek.jLibrary.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

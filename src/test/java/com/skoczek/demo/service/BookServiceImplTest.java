@@ -1,8 +1,9 @@
 package com.skoczek.demo.service;
 
-import com.skoczek.demo.dao.BookDAO;
-import com.skoczek.demo.model.Book;
-import com.skoczek.demo.model.User;
+import com.skoczek.jLibrary.dao.BookDAO;
+import com.skoczek.jLibrary.model.Book;
+import com.skoczek.jLibrary.model.User;
+import com.skoczek.jLibrary.service.BookServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;

@@ -1,9 +1,10 @@
 package com.skoczek.demo.service;
 
-import com.skoczek.demo.dao.UserDAO;
-import com.skoczek.demo.model.User;
-import com.skoczek.demo.repository.UserRepository;
-import com.skoczek.demo.repository.UserRoleRepository;
+import com.skoczek.jLibrary.dao.UserDAO;
+import com.skoczek.jLibrary.model.User;
+import com.skoczek.jLibrary.repository.UserRepository;
+import com.skoczek.jLibrary.repository.UserRoleRepository;
+import com.skoczek.jLibrary.service.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
