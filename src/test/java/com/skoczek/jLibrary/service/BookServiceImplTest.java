@@ -1,13 +1,10 @@
-package com.skoczek.demo.service;
+package com.skoczek.jLibrary.service;
 
 import com.skoczek.jLibrary.dao.BookDAO;
-import com.skoczek.jLibrary.model.Book;
-import com.skoczek.jLibrary.model.User;
-import com.skoczek.jLibrary.service.BookServiceImpl;
-import org.junit.jupiter.api.BeforeAll;
+import com.skoczek.jLibrary.domain.Book;
+import com.skoczek.jLibrary.domain.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;

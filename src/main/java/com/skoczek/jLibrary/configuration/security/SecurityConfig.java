@@ -1,4 +1,4 @@
-package com.skoczek.jLibrary.security;
+package com.skoczek.jLibrary.configuration.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

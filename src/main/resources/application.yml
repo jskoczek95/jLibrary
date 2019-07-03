@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jLibrary
+    username: postgres
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: validate
+logging:
+  level:
+    org.hibernate: ERROR

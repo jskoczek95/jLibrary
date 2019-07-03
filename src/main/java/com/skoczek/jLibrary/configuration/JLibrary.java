@@ -1,4 +1,4 @@
-package com.skoczek.jLibrary;
+package com.skoczek.jLibrary.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

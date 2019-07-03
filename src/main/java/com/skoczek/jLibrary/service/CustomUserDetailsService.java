@@ -1,7 +1,7 @@
 package com.skoczek.jLibrary.service;
 
-import com.skoczek.jLibrary.model.User;
-import com.skoczek.jLibrary.model.UserRole;
+import com.skoczek.jLibrary.domain.User;
+import com.skoczek.jLibrary.domain.UserRole;
 import com.skoczek.jLibrary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

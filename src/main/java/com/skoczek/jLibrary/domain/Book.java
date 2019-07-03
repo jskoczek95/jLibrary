@@ -1,5 +1,6 @@
-package com.skoczek.jLibrary.model;
+package com.skoczek.jLibrary.domain;
 
+import com.skoczek.jLibrary.domain.enums.BookCategory;
 import lombok.Getter;
 import lombok.Setter;
 

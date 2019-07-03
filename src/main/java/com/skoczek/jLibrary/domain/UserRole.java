@@ -1,5 +1,6 @@
-package com.skoczek.jLibrary.model;
+package com.skoczek.jLibrary.domain;
 
+import com.skoczek.jLibrary.domain.enums.Roles;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,6 @@ public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String role;
+    private Roles role;
     private String description;
 }

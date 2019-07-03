@@ -1,12 +1,9 @@
-package com.skoczek.demo.service;
+package com.skoczek.jLibrary.service;
 
 import com.skoczek.jLibrary.dao.UserDAO;
-import com.skoczek.jLibrary.model.User;
-import com.skoczek.jLibrary.model.UserRole;
+import com.skoczek.jLibrary.domain.User;
 import com.skoczek.jLibrary.repository.UserRepository;
 import com.skoczek.jLibrary.repository.UserRoleRepository;
-import com.skoczek.jLibrary.service.UserServiceImpl;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,8 +19,6 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
-
-    public static final String DEFAULT_ROLE = "USER_ROLE";
 
     @Mock
     private UserDAO userDAO;

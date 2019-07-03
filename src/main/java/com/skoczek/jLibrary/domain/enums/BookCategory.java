@@ -1,4 +1,4 @@
-package com.skoczek.jLibrary.model;
+package com.skoczek.jLibrary.domain.enums;
 
 public enum BookCategory {
 
