@@ -2,11 +2,13 @@ package com.skoczek.demo.service;
 
 import com.skoczek.jLibrary.dao.UserDAO;
 import com.skoczek.jLibrary.model.User;
+import com.skoczek.jLibrary.model.UserRole;
 import com.skoczek.jLibrary.repository.UserRepository;
 import com.skoczek.jLibrary.repository.UserRoleRepository;
 import com.skoczek.jLibrary.service.UserServiceImpl;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,26 +17,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 public class UserServiceImplTest {
 
     public static final String DEFAULT_ROLE = "USER_ROLE";
+
     @Mock
     private UserDAO userDAO;
     @Mock
     private UserRepository userRepository;
     @Mock
-    private UserRoleRepository roleRepository;
-    @Mock
     private PasswordEncoder passwordEncoder;
+    @Mock
+    private UserRoleRepository roleRepository;
+
     private User user;
+
     @InjectMocks
     private UserServiceImpl userService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
 
         user = new User();
