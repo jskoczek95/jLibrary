@@ -12,10 +12,19 @@
     <artifactId>jLibrary</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>jLibrary</name>
-    <description>Service for borrowing/lending things</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
+        <postgresql.version>9.4-1206-jdbc42</postgresql.version>
+        <auth0security.version>1.2.1</auth0security.version>
+        <javajwt.version>3.8.0</javajwt.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <springsectest.version>4.0.4.RELEASE</springsectest.version>
+        <junit.version>5.3.2</junit.version>
+        <springtest.version>5.1.5.RELEASE</springtest.version>
+        <flyway.version>5.2.4</flyway.version>
+        <mvnsurefire.version>2.19.1</mvnsurefire.version>
     </properties>
 
     <dependencies>
@@ -37,7 +46,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4-1206-jdbc42</version>
+            <version>${postgresql.version}</version>
         </dependency>
         <!-- lombok -->
         <dependency>
@@ -53,17 +62,17 @@
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>auth0-spring-security-api</artifactId>
-            <version>1.2.1</version>
+            <version>${auth0security.version}</version>
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-            <version>3.8.0</version>
+            <version>${javajwt.version}</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.1</version>
+            <version>${jjwt.version}</version>
         </dependency>
         <!-- test -->
         <dependency>
@@ -74,26 +83,26 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
-            <version>4.0.4.RELEASE</version>
+            <version>${springsectest.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.3.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.1.5.RELEASE</version>
+            <version>${springtest.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- flyway -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>5.2.4</version>
+            <version>${flyway.version}</version>
         </dependency>
     </dependencies>
 
@@ -106,7 +115,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>${mvnsurefire.version}</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
@@ -114,7 +123,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.2.4</version>
+                <version>${flyway.version}</version>
                 <configuration>
                     <url>jdbc:postgresql://localhost:5432/jLibrary</url>
                     <user>postgres</user>
