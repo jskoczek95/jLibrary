@@ -5,15 +5,15 @@ services:
     image: adminer
     ports:
       - "8090:8080"
-    restart: 'always'
+    restart: 'no'
   db:
-    image: postgres
+    image: postgres:latest
     environment:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: jLibrary
     ports:
       - "5432:5432"
-    restart: 'always'
+    restart: 'no'
     volumes:
       - db_data:/var/lib/postgresql/data
 volumes:

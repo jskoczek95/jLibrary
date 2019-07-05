@@ -17,6 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
 
     @Column(name = "first_name")
@@ -33,7 +34,7 @@ public class User {
 
     @Column(nullable = false)
     @NotEmpty
-    private String password;
+    private String encryptedPassword;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Book> books;
